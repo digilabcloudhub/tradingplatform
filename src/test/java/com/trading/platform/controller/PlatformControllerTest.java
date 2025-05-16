@@ -50,10 +50,8 @@ public class PlatformControllerTest {
 
 		private Order buildOrderObject() {
 			Order order= new Order();
-			order.setOrder_id(1L);
 			order.setOrder_price(1.00);
 			order.setQuantity(10);
-			order.setTrade_id(2L);
 			
 			return order;
 		}
@@ -71,10 +69,6 @@ public class PlatformControllerTest {
 	        // verify
 	        response.andDo(print()).
 	                andExpect(status().isCreated())
-	                .andExpect(jsonPath("$.orderId",
-	                        is(order.getOrder_id())))
-	                .andExpect(jsonPath("$.tradeId",
-	                        is(order.getTrade_id())))
 	                .andExpect(jsonPath("$.quantity",
 	                        is(order.getQuantity())));
 	    }

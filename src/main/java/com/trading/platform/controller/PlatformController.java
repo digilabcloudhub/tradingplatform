@@ -15,7 +15,7 @@ import com.trading.platform.model.Order;
 import com.trading.platform.service.PlatformService;
 
 @RestController
-@RequestMapping("cas")
+@RequestMapping("trade")
 public class PlatformController {
 
 	@Autowired

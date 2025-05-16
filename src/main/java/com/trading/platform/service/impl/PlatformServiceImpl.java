@@ -9,6 +9,7 @@ import com.trading.platform.dao.OrderDao;
 import com.trading.platform.entity.InstrumentEntity;
 import com.trading.platform.entity.OrderDetails;
 import com.trading.platform.entity.OrderEntity;
+import com.trading.platform.entity.TradeEntity;
 import com.trading.platform.model.FinancialInstrument;
 import com.trading.platform.model.InstrumentDetails;
 import com.trading.platform.model.Order;
@@ -30,12 +31,12 @@ public class PlatformServiceImpl implements PlatformService {
 	@Override
 	public OrderDetails addOrder(Order order) {
 		// TODO Auto-generated method stub
-		trandingWorkflows.initateWorkflow(OrderConvertors.orderConvertor(order));
-		OrderEntity orderEntity = orderDao.save(OrderConvertors.orderConvertor(order));
-		if(orderEntity.getOrder_id()!=null) {
-			return OrderConvertors.convertResponse(orderEntity);
+		TradeEntity trade=trandingWorkflows.initateWorkflow(OrderConvertors.orderConvertor(order));
+		//OrderEntity orderEntity = orderDao.save(OrderConvertors.orderConvertor(order));
+		if(trade!=null && trade.getTrade_id()!=null) {
+			return OrderConvertors.convertTradeResponse(trade);
 		}
-		return null;
+		return OrderConvertors.convertOrderResponse();
 	}
 
 	@Override
