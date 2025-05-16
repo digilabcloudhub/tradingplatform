@@ -1,14 +1,14 @@
-package com.trading.platform.entity;
+package com.trading.platform.model;
 
-public class OrderDetails {
+public class InstrumentDetails {
 	
 	private String status;
 	private String code;
 	private String message;
-
+	
 	@Override
 	public String toString() {
-		return "OrderDetails [status=" + status + ", code=" + code + ", message=" + message+"]";
+		return "InstrumentDetails [status=" + status + ", code=" + code + ", message=" + message+"]";
 	}
 	public String getStatus() {
 		return status;
