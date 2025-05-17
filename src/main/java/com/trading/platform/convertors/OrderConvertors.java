@@ -43,7 +43,7 @@ public class OrderConvertors {
 		}else {
 			orderDetails.setCode("403");
 			orderDetails.setStatus("Forbidden");
-			orderDetails.setMessage("Order cannot be cancelled as it is already traded");
+			orderDetails.setMessage("Order cannot be cancelled.Either it is processed or order id is not valid");
 			
 		}
 		
@@ -64,8 +64,10 @@ public class OrderConvertors {
 	}
 	
 	public static InstrumentEntity convertInstrument(FinancialInstrument instrument) {
-
-		return InstrumentEntity.builder().setMarket_price(instrument.getMarket_price()).setSymbol(instrument.getSymbol()).build();
+		InstrumentEntity instrumentEntity = new InstrumentEntity();
+		instrumentEntity.setMarket_price(instrument.getMarket_price());
+		instrumentEntity.setSymbol(instrument.getSymbol());
+		return instrumentEntity;
 		
 
 	}

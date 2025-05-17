@@ -8,23 +8,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Data
 @Entity
 @Table(name = "instrument")
+@Getter
+@Setter
 public class InstrumentEntity {
-
-	public Long getIntrument_id() {
-		return intrument_id;
-	}
-
-	public String getSymbol() {
-		return symbol;
-	}
-
-	public Double getMarket_price() {
-		return market_price;
-	}
 
 	private static final long serialVersionUID = 1L;
 
@@ -49,30 +41,6 @@ public class InstrumentEntity {
 		this.symbol = symbol;
 		this.market_price = market_price;
 
-	}
-
-	public static InstrumentEntityBuilder builder() {
-		return new InstrumentEntityBuilder();
-	}
-
-	public static class InstrumentEntityBuilder {
-
-		private String symbol;
-		private Double market_price;
-
-		public InstrumentEntityBuilder setSymbol(final String symbol) {
-			this.symbol = symbol;
-			return this;
-		}
-
-		public InstrumentEntityBuilder setMarket_price(final Double market_price) {
-			this.market_price = market_price;
-			return this;
-		}
-
-		public InstrumentEntity build() {
-			return new InstrumentEntity(symbol, market_price);
-		}
 	}
 
 }

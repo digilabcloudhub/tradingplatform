@@ -57,20 +57,24 @@ public class TradingWorkflows {
 	}
 
 	private void updateMarketValuetoLatest() {
-		List<OrderEntity>  buyOrder = orderDao.findByOrderTypeAndOrderStatus(BUY, NOT_PROGRESS);
-		List<OrderEntity>  sellOrder = orderDao.findByOrderTypeAndOrderStatus(SELL, NOT_PROGRESS);
-		Optional<OrderEntity> bestBuyOrder =buyOrder.stream().max(Comparator.comparing(OrderEntity :: getOrder_price));
-		Optional<OrderEntity> bestSellOrder = sellOrder.stream().max(Comparator.comparing(OrderEntity :: getOrder_price));
-		//Double updatedMarketValue = ( + sellOrder.getOrder_price()) / 2;
-		if (bestBuyOrder.isPresent() &&  bestSellOrder.isPresent()) {
-			Double updatedMarketValue =(bestBuyOrder.get().getOrder_price()+bestSellOrder.get().getOrder_price())/2;
-			if(updatedMarketValue>0) {
+		System.out.println("Inside updated market price");
+		List<OrderEntity> buyOrder = orderDao.findByOrderTypeAndOrderStatus(BUY, NOT_PROGRESS);
+		List<OrderEntity> sellOrder = orderDao.findByOrderTypeAndOrderStatus(SELL, NOT_PROGRESS);
+		Optional<OrderEntity> bestBuyOrder = buyOrder.stream().max(Comparator.comparing(OrderEntity::getOrder_price));
+		Optional<OrderEntity> bestSellOrder = sellOrder.stream().max(Comparator.comparing(OrderEntity::getOrder_price));
+		// Double updatedMarketValue = ( + sellOrder.getOrder_price()) / 2;
+		if (bestBuyOrder.isPresent() && bestSellOrder.isPresent()) {
+
+			Double updatedMarketValue = (bestBuyOrder.get().getOrder_price() + bestSellOrder.get().getOrder_price())
+					/ 2;
+			System.out.println("updated market price" + updatedMarketValue);
+			if (updatedMarketValue > 0) {
 				List<InstrumentEntity> instruments = intrumentDao.findAll();
 				InstrumentEntity instrument = instruments.get(0);
-				instrument.builder().setMarket_price(updatedMarketValue);
+				instrument.setMarket_price(updatedMarketValue);
 				intrumentDao.save(instrument);
 			}
-			
+
 		}
 
 	}
@@ -101,7 +105,6 @@ public class TradingWorkflows {
 	}
 
 	private void updateOrderWithNPStatus(OrderEntity entity) {
-		System.out.println("Inside not traded order");
 		entity.setOrderStatus("NP");
 		orderDao.save(entity);
 
@@ -130,11 +133,11 @@ public class TradingWorkflows {
 	}
 
 	private TradeEntity queryOrderType(String order_type, OrderEntity workflowEntity) {
-		List<OrderEntity> listOfSellOrders = orderDao.findByOrderTypeAndQuantityAndOrderStatus(order_type,
-				workflowEntity.getQuantity(), IN_PROGRESS);
-		Optional<OrderEntity> sellOrder = getFirstElement(listOfSellOrders);
-		if (sellOrder.isPresent()) {
-			return initiateTrade(workflowEntity, sellOrder.get());
+		List<OrderEntity> listOfSellOrders = orderDao.findByOrderTypeAndQuantityAndOrderStatusAndOrderPrice(order_type,
+				workflowEntity.getQuantity(), NOT_PROGRESS, workflowEntity.getOrder_price());
+		Optional<OrderEntity> bestOrder = getFirstElement(listOfSellOrders);
+		if (bestOrder.isPresent()) {
+			return initiateTrade(workflowEntity, bestOrder.get());
 		}
 		return null;
 	}

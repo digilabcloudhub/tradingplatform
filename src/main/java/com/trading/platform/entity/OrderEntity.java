@@ -38,7 +38,6 @@ public class OrderEntity {
 	@Column(name = "quantity")
 	private int quantity;
 
-
 	public Long getOrder_id() {
 		return orderId;
 	}
@@ -96,7 +95,6 @@ public class OrderEntity {
 		private Long order_id;
 		private String orderType;
 		private Double order_price;
-		private String order_status;
 		private int quantity;
 
 		public OrderEntityBuilder setOrder_Id(final Long order_id) {
@@ -118,7 +116,6 @@ public class OrderEntity {
 			this.quantity = quantity;
 			return this;
 		}
-
 
 		public OrderEntity build() {
 			return new OrderEntity(order_id, orderType, order_price, quantity);

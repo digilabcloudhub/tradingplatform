@@ -8,11 +8,13 @@ import com.trading.platform.dao.InstrumentDao;
 import com.trading.platform.entity.InstrumentEntity;
 import com.trading.platform.entity.OrderDetails;
 import com.trading.platform.entity.TradeEntity;
+import com.trading.platform.exception.InvalidOrderIDException;
 import com.trading.platform.model.CancelOrder;
 import com.trading.platform.model.FinancialInstrument;
 import com.trading.platform.model.InstrumentDetails;
 import com.trading.platform.model.Order;
 import com.trading.platform.service.PlatformService;
+import com.trading.platform.validator.CancelOrderValidator;
 import com.trading.platform.workflows.TradingWorkflows;
 
 @Service
@@ -34,8 +36,8 @@ public class PlatformServiceImpl implements PlatformService {
 	}
 
 	@Override
-	public OrderDetails cancelOrder(CancelOrder order) {
-
+	public OrderDetails cancelOrder(CancelOrder order) throws InvalidOrderIDException {
+		CancelOrderValidator.validateOrder(order);
 		String response = trandingWorkflows.initateCancelWorkflow(order);
 		return OrderConvertors.convertCancelResponse(response);
 	}
