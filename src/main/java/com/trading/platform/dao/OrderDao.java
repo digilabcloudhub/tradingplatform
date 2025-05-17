@@ -12,5 +12,7 @@ import com.trading.platform.entity.OrderEntity;
 public interface OrderDao  extends JpaRepository<OrderEntity, Long> {
 	
 	List<OrderEntity> findByOrderTypeAndQuantityAndOrderStatus(String order_type,int quantity,String orderStatus);
-
+	OrderEntity findByOrderIdAndOrderStatus(Long order_id,String orderStatus);
+	List<OrderEntity> findByOrderTypeAndOrderStatus(String order_type,String orderStatus);
+	
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.trading.platform.entity.OrderDetails;
+import com.trading.platform.model.CancelOrder;
 import com.trading.platform.model.FinancialInstrument;
 import com.trading.platform.model.InstrumentDetails;
 import com.trading.platform.model.Order;
@@ -40,7 +41,7 @@ public class PlatformController {
 	}
 	
 	@PostMapping("api/cancelOrder")
-	public ResponseEntity<OrderDetails> cancelOrder(@RequestBody Order order) {
+	public ResponseEntity<OrderDetails> cancelOrder(@RequestBody CancelOrder order) {
 
 		OrderDetails cancelDetails=platformService.cancelOrder(order);
 		return new ResponseEntity<OrderDetails>(cancelDetails,HttpStatus.ACCEPTED);

@@ -33,6 +33,25 @@ public class OrderConvertors {
 		
 	}
 	
+	public static OrderDetails convertCancelResponse(String response) {
+		
+		OrderDetails orderDetails = new OrderDetails();
+		if (response.equalsIgnoreCase("Success")){
+			orderDetails.setCode("200");
+			orderDetails.setStatus("Succefully cancelled.");
+			orderDetails.setMessage("Order cancelled succesfully");
+		}else {
+			orderDetails.setCode("403");
+			orderDetails.setStatus("Forbidden");
+			orderDetails.setMessage("Order cannot be cancelled as it is already traded");
+			
+		}
+		
+		return orderDetails;
+		
+		
+	}
+	
 	public static OrderDetails convertOrderResponse() {
 		
 		OrderDetails orderDetails = new OrderDetails();

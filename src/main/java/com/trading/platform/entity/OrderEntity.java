@@ -20,7 +20,7 @@ public class OrderEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "order_id")
-	private Long order_id;
+	private Long orderId;
 
 	@Column(name = "trade_id")
 	private Long trade_id;
@@ -30,7 +30,7 @@ public class OrderEntity {
 	private String orderType;
 
 	@Column(name = "order_price")
-	private Double order_price;
+	private Double orderPrice;
 
 	@Column(name = "order_status")
 	private String orderStatus;
@@ -40,7 +40,7 @@ public class OrderEntity {
 
 
 	public Long getOrder_id() {
-		return order_id;
+		return orderId;
 	}
 
 	public Long getTrade_id() {
@@ -52,7 +52,7 @@ public class OrderEntity {
 	}
 
 	public Double getOrder_price() {
-		return order_price;
+		return orderPrice;
 	}
 
 	public int getQuantity() {
@@ -68,9 +68,9 @@ public class OrderEntity {
 	}
 
 	public OrderEntity(Long order_id, String order_type, Double order_price, int quantity) {
-		this.order_id = order_id;
+		this.orderId = order_id;
 		this.orderType = order_type;
-		this.order_price = order_price;
+		this.orderPrice = order_price;
 		this.quantity = quantity;
 
 	}
