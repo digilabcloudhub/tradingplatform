@@ -50,7 +50,6 @@ public class PlatformController {
 		try {
 			cancelDetails = platformService.cancelOrder(order);
 		} catch (InvalidOrderIDException e) {
-			// TODO Auto-generated catch block
 			logger.error(e.getLocalizedMessage());
 		}
 		if (cancelDetails == null) {

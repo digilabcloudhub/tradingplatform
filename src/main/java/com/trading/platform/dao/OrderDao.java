@@ -14,5 +14,6 @@ public interface OrderDao  extends JpaRepository<OrderEntity, Long> {
 	List<OrderEntity> findByOrderTypeAndQuantityAndOrderStatusAndOrderPrice(String order_type,int quantity,String orderStatus,Double orderPrice);
 	OrderEntity findByOrderIdAndOrderStatus(Long order_id,String orderStatus);
 	List<OrderEntity> findByOrderTypeAndOrderStatus(String order_type,String orderStatus);
+	List<OrderEntity> findByOrderTypeAndOrderStatusAndOrderPrice(String order_type,String orderStatus,Double orderPrice);
 	
 }

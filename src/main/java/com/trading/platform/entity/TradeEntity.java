@@ -8,6 +8,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
 
+/**
+ * The Class represent trade table, which stores all details about all trades
+ * happening for orders.
+ */
 @Data
 @Entity
 @Table(name = "trade")

@@ -15,7 +15,9 @@ import com.trading.platform.model.InstrumentDetails;
 import com.trading.platform.model.Order;
 import com.trading.platform.service.PlatformService;
 import com.trading.platform.validator.CancelOrderValidator;
-import com.trading.platform.workflows.TradingWorkflows;
+import com.trading.platform.workflows.AddOrderWorkflow;
+import com.trading.platform.workflows.CancelOrderWorkflow;
+import com.trading.platform.workflows.TradingWorkflowsHelper;
 
 @Service
 public class PlatformServiceImpl implements PlatformService {
@@ -24,7 +26,10 @@ public class PlatformServiceImpl implements PlatformService {
 	private InstrumentDao instrumentDao;
 
 	@Autowired
-	private TradingWorkflows trandingWorkflows;
+	private AddOrderWorkflow trandingWorkflows;
+	
+	@Autowired
+	private CancelOrderWorkflow canelWorkflow;
 
 	@Override
 	public OrderDetails addOrder(Order order) {
@@ -38,7 +43,7 @@ public class PlatformServiceImpl implements PlatformService {
 	@Override
 	public OrderDetails cancelOrder(CancelOrder order) throws InvalidOrderIDException {
 		CancelOrderValidator.validateOrder(order);
-		String response = trandingWorkflows.initateCancelWorkflow(order);
+		String response = canelWorkflow.initateCancelWorkflow(order);
 		return OrderConvertors.convertCancelResponse(response);
 	}
 

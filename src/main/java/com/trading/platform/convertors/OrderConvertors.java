@@ -14,11 +14,12 @@ public class OrderConvertors {
 
 	public static OrderEntity orderConvertor(Order order) {
 
-		return OrderEntity.builder()
-				.setOrder_type(order.getOrder_type().toString())
-				.setOrder_price(OptionalDouble.of(order.getOrder_price()).orElse(0))
-				.setQuantity(order.getQuantity())
-				.build();
+		OrderEntity orderEntity = new OrderEntity();
+		orderEntity.setQuantity(order.getQuantity());
+		 orderEntity.setOrderType(order.getOrder_type().toString());
+		 orderEntity.setOrderPrice(OptionalDouble.of(order.getOrder_price()).orElse(0));
+		 return orderEntity;
+
 
 	}
 	
