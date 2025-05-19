@@ -13,8 +13,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.trading.platform.entity.OrderDetails;
 import com.trading.platform.model.Order;
+import com.trading.platform.model.OrderDetails;
 import com.trading.platform.model.OrderType;
 import com.trading.platform.service.PlatformService;
 import com.trading.platform.workflows.AddOrderWorkflow;

@@ -3,12 +3,12 @@ package com.trading.platform.convertors;
 import java.util.OptionalDouble;
 
 import com.trading.platform.entity.InstrumentEntity;
-import com.trading.platform.entity.OrderDetails;
 import com.trading.platform.entity.OrderEntity;
 import com.trading.platform.entity.TradeEntity;
 import com.trading.platform.model.FinancialInstrument;
 import com.trading.platform.model.InstrumentDetails;
 import com.trading.platform.model.Order;
+import com.trading.platform.model.OrderDetails;
 
 public class OrderConvertors {
 

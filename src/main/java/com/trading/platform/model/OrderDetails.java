@@ -1,4 +1,4 @@
-package com.trading.platform.entity;
+package com.trading.platform.model;
 
 import lombok.Getter;
 import lombok.Setter;

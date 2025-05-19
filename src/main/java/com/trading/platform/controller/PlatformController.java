@@ -9,12 +9,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.trading.platform.entity.OrderDetails;
+
 import com.trading.platform.exception.InvalidOrderIDException;
 import com.trading.platform.model.CancelOrder;
 import com.trading.platform.model.FinancialInstrument;
 import com.trading.platform.model.InstrumentDetails;
 import com.trading.platform.model.Order;
+import com.trading.platform.model.OrderDetails;
 import com.trading.platform.service.PlatformService;
 
 @RestController
